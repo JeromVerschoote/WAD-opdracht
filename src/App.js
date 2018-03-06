@@ -1,18 +1,23 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+//
+import InputField from './InputField.jsx';
 
 class App extends Component {
+  constructor(){
+    super();
+    this.state = {value: 0};
+  }
+
+  _handleChangeSlider = (value) => {
+    this.setState({value});
+  }
+
   render() {
+    const {value} = this.state;
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+      <div>
+        <InputField onChange={value => this._handleChangeSlider(value)} value={value}/>
       </div>
     );
   }
