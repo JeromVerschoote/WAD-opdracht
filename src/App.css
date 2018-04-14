@@ -26,3 +26,61 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+body {
+  background: #F9FAFC;
+}
+
+.newTodo-form {
+  display: flex;
+  justify-content: space-between;
+}
+
+.newTodo-input {
+  padding: 1.2rem 1rem;
+  flex-grow: 1;
+
+  font-size: 1rem;
+
+  border: none;
+  outline: none;
+}
+
+.newTodo-button {
+  background: #DF2C2E;
+  border: none;
+  color: white;
+  font-size: 2rem;
+  outline: none;
+  min-width: 4rem;
+}
+
+.newTodo-button:hover{
+  background: white;
+  color: #DF2C2E;
+  cursor: pointer;
+}
+
+.todo-list {
+  background: white;
+  box-shadow: .1rem .1rem .2rem rgba(0,0,0,.1);
+}
+
+.todo-item {
+  display: flex;
+  width: 100%;
+  left: 0;
+  border-bottom: solid 1px rgba(0, 0, 0, .1);
+}
+
+.todo-item-list {
+  display: flex;
+
+  width: 100%;
+}
+
+.todo-item-list li {
+  flex-grow: 1;
+  padding: 1rem;
+  list-style: none;
+}

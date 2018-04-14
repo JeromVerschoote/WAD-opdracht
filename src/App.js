@@ -1,24 +1,26 @@
 import React, { Component } from 'react';
 import './App.css';
 //
-import InputField from './InputField.jsx';
+import AddTodo from './AddTodo.jsx';
+import TodoList from './TodoList.jsx';
+
 
 class App extends Component {
   constructor(){
     super();
-    this.state = {value: 0};
-  }
+    this.state = {'newTodo': {}}
+  };
 
-  _handleChangeSlider = (value) => {
-    this.setState({value});
+  handleAddTodo = todo => {
+    this.setState({ 'newTodo': todo });
   }
 
   render() {
-    const {value} = this.state;
     return (
-      <div>
-        <InputField onChange={value => this._handleChangeSlider(value)} value={value}/>
-      </div>
+      <React.Fragment>
+        <AddTodo onAddTodo={this.handleAddTodo} />
+        <TodoList newTodo={this.state.newTodo} />
+      </React.Fragment>
     );
   }
 }
