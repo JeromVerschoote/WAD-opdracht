@@ -29,6 +29,7 @@
 
 body {
   background: #F9FAFC;
+  font-family: helvetica;
 }
 
 .newTodo-form {
@@ -40,10 +41,16 @@ body {
   padding: 1.2rem 1rem;
   flex-grow: 1;
 
-  font-size: 1rem;
-
   border: none;
   outline: none;
+
+  font-size: .9rem;
+
+  box-shadow: .1rem .1rem .2rem rgba(0,0,0,.05);
+}
+
+.newTodo-input:first-of-type {
+  flex-grow: 10;
 }
 
 .newTodo-button {
@@ -53,6 +60,9 @@ body {
   font-size: 2rem;
   outline: none;
   min-width: 4rem;
+  transition: .1s;
+
+  box-shadow: .1rem .1rem .2rem rgba(0,0,0,.05);
 }
 
 .newTodo-button:hover{
@@ -75,12 +85,61 @@ body {
 
 .todo-item-list {
   display: flex;
-
   width: 100%;
 }
 
 .todo-item-list li {
+  min-width: 15rem;
   flex-grow: 1;
   padding: 1rem;
   list-style: none;
+  font-size: .9rem;
+  transition: .1s;
+}
+
+.todo-delete {
+  border: none;
+  color: grey;
+  background: rgba(0, 0, 0, 0);
+  height: 1.5rem;
+  width: 1.5rem;
+  border-radius: 5rem;
+  position: absolute;
+  right: 1rem;
+  margin-top: .6rem;
+  transition: .2s;
+}
+
+.todo-delete:hover{
+  background: rgba(0, 0, 0, .1);
+  color: white;
+}
+
+.todo-item-list:hover{
+  background: rgba(0, 0, 0, .03);
+  transition: .1s;
+}
+
+.todo-item-list li:first-of-type {
+  font-size: 1rem;
+}
+
+.todo-project {
+  color: grey;
+}
+
+.todo-project span {
+  color: #DF2C2E;
+}
+
+.hidden {
+  display: none;
+}
+
+h2 {
+  padding: 3rem 2rem 1rem;
+}
+
+p {
+  padding: 0 2rem;
 }

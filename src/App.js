@@ -19,6 +19,7 @@ class App extends Component {
     return (
       <React.Fragment>
         <AddTodo onAddTodo={this.handleAddTodo} />
+        <h2>Todo's</h2>
         <TodoList newTodo={this.state.newTodo} />
       </React.Fragment>
     );

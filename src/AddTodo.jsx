@@ -28,7 +28,7 @@ class AddTodo extends Component {
     return (
       <div className='newTodo-form'>
         { Object.keys(this.state).map(
-          key =>  <TodoInputField value={this.state[key]} key={key} onInput={e => this.handleInputField(key, e)} placeholder={key}/>
+          key =>  <TodoInputField value={this.state[key]} key={key} onChange={e => this.handleInputField(key, e)} placeholder={key}/>
         )}
         <button onClick={this.handleClickButton} className='newTodo-button'>+</button>
       </div>

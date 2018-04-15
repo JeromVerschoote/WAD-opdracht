@@ -1,20 +1,16 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+//import PropTypes from 'prop-types';
 
-const TodoInputField = ({value, onInput, placeholder}) => {
+const TodoInputField = ({value, onChange, placeholder}) => {
 
   const inputField = e => {
     const {value} = e.currentTarget
-    onInput(value);
+    onChange(value);
   }
 
   return(
-    <input placeholder={placeholder} value={value} onInput={inputField} className='newTodo-input'/>
+    <input placeholder={placeholder} value={value} onChange={inputField} className='newTodo-input'/>
   )
-}
-
-TodoInputField.propTypes = {
-
 }
 
 export default TodoInputField;
