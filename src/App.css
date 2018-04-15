@@ -143,3 +143,11 @@ h2 {
 p {
   padding: 0 2rem;
 }
+
+.todo-ongoing {
+  margin-right: 2rem
+}
+
+.todo-ongoing:hover {
+  background: #2B883A;
+}

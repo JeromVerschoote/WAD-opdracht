@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 let listItems = {};
 
-const TodoList = ({newTodo}) => {
+const TodoList = ({newTodo, addOngoing}) => {
 
   const index = Object.keys(listItems).length;
   const $nul = document.getElementById('0');
@@ -14,6 +14,11 @@ const TodoList = ({newTodo}) => {
     const $list = document.getElementById(key);
     $list.remove();
     renderList();
+  }
+
+  const replaceItemToOngoing = (e, key) => {
+    addOngoing(e.currentTarget.parentNode);
+    removeItemFromList(e, key);
   }
 
   const renderList = () => {
@@ -34,6 +39,7 @@ const TodoList = ({newTodo}) => {
               <li>{listItems[key].deadline}</li>
               <li>{listItems[key].link}</li>
             </ul>
+            <button className='todo-delete todo-ongoing' onClick={e => replaceItemToOngoing(e, key)}>></button>
             <button className='todo-delete' onClick={e => removeItemFromList(e, key)}>x</button>
           </li>
         )}
