@@ -11,7 +11,7 @@ const Infographic = ({store}) => {
 };
 
 Infographic.propTypes = {
-  store: Infographic.object.isRequired
+  store: PropTypes.object.isRequired
 }
 
 export default observer(Infographic);

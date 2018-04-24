@@ -32,7 +32,7 @@ const ProjectSelector = ({store}) => {
 };
 
 ProjectSelector.propTypes = {
-  store: ProjectSelector.object.isRequired
+  store: PropTypes.object.isRequired
 }
 
 export default observer(ProjectSelector);
