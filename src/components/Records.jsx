@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import {observer} from 'mobx-react';
 
 const Records = ({store}) => {
@@ -8,5 +9,9 @@ const Records = ({store}) => {
     </div>
   );
 };
+
+Records.propTypes = {
+  store: PropTypes.object.isRequired
+}
 
 export default observer(Records);

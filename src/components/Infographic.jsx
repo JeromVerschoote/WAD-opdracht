@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import {observer} from 'mobx-react';
 
 const Infographic = ({store}) => {
@@ -8,5 +9,9 @@ const Infographic = ({store}) => {
     </div>
   );
 };
+
+Infographic.propTypes = {
+  store: Infographic.object.isRequired
+}
 
 export default observer(Infographic);

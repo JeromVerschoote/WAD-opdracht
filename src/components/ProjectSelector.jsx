@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import {observer} from 'mobx-react';
 
 const ProjectSelector = ({store}) => {
@@ -29,5 +30,9 @@ const ProjectSelector = ({store}) => {
     </div>
   );
 };
+
+ProjectSelector.propTypes = {
+  store: ProjectSelector.object.isRequired
+}
 
 export default observer(ProjectSelector);

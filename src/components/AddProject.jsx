@@ -1,7 +1,8 @@
 import React from "react";
+import PropTypes from "prop-types";
 import Project from '../models/Project';
 
-const addProject = ({store}) => {
+const AddProject = ({store}) => {
   const handleSubmitForm = e => {
     e.preventDefault();
     const $form = e.currentTarget;
@@ -24,4 +25,8 @@ const addProject = ({store}) => {
   );
 };
 
-export default addProject;
+AddProject.propTypes = {
+  store: PropTypes.object.isRequired,
+}
+
+export default AddProject;
