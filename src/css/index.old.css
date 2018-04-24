@@ -1,0 +1,240 @@
+@import 'reset.css';
+
+body {
+  font-family: helvetica;
+}
+
+h2 {
+  font-size: 1.4rem;
+  padding: 0.5rem 2rem;
+}
+
+input, button, select {
+  border: none;
+  outline: none;
+}
+
+li {
+  list-style: none;
+}
+
+#root {
+  display: flex;
+}
+
+.application {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+}
+
+.application-navigation{
+  width: 12.5vw;
+  background: #2C2C2C;
+}
+
+.application-content {
+  width: 87.5vw;
+  background: #F9FAFC;
+}
+
+.new-form {
+  width: 87.5vw;
+  display: flex;
+  justify-content: space-between;
+  height: 4rem;
+  box-shadow: .1rem .1rem .2rem rgba(0,0,0,.05);
+  background: white;
+  position: fixed;
+}
+
+.panelNew-input {
+  font-size: .9rem;
+  background: none;
+  padding: 1rem;
+}
+
+.panelNew-input--big {
+  flex-grow: 5;
+  font-size: 1.1rem;
+}
+
+.panelNew-button {
+  width: 4rem;
+  color: white;
+  background: #42C100;
+  font-size: 2rem;
+  transition: .1s;
+  box-shadow: .1rem .1rem .2rem rgba(0,0,0,.05);
+}
+
+.panelNew-button:hover{
+  background: white;
+  color: #42C100;
+  cursor: pointer;
+}
+
+.project{
+  display: flex;
+  flex-flow: column;
+  height: 100vh;
+  width: 45%;
+  background: white;
+  box-shadow: .1rem .1rem .2rem rgba(0,0,0,.05);
+}
+
+.panel-management-recent {
+  height: 20%;
+  padding: 6rem 0;
+}
+
+.panel-management-recent p {
+  padding-left: 2rem;
+  font-size: .9rem;
+  color: grey;
+}
+
+.project-todos {
+  height: 80%;
+  display: flex;
+  flex-flow: column;
+  justify-content: space-between;
+}
+
+.managementAll-form--project {
+  height: 3rem;
+  margin: 0 1.6rem;
+  margin-top: 1rem;
+  width: 80%;
+  font-size: .9rem;
+  background: none;
+  font-weight: bold;
+}
+
+.managementAll-info{
+  font-size: .9rem;
+  color: rgba(0, 0, 0, .5);
+}
+
+.managementAll-list {
+  height: 100%;
+  overflow: scroll;
+}
+
+.managementAll-list-item  {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: .07s;
+  padding: 1.5rem;
+}
+
+.managementAll-list-item:hover {
+  background: rgba(0, 0, 0, .03);
+}
+
+.managementAll-list-item p {
+  width: 20%;
+}
+
+.managementAll-list-item-prop {
+  font-size: .9rem;
+}
+
+.managementAll-list-item-prop--task {
+  flex-grow: 1;
+}
+
+.managementAll-list-item-prop--time {
+    color: rgba(0, 0, 0, .5);
+}
+
+.managementAll-form-todo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.managementAll-form-todo-input {
+  font-size: .8rem;
+  height: 3.5rem;
+  padding: 0 1.5rem;
+  background: rgba(0,0,0,.05);
+}
+
+.managementAll-form-todo-input--task{
+  flex-grow: 4;
+}
+
+.managementAll-form-todo-input--submit {
+  background: #42C100;
+  color: white;
+  font-size: 1rem;
+  transition: .1s;
+}
+
+.managementAll-form-todo-input--submit:hover {
+  cursor: pointer;
+  background: white;
+  color: #42C100;
+}
+
+.managementAll-list-item-action {
+  opacity: 0;
+  color: rgba(0,0,0,.4);
+  font-size: .8rem;
+  background: none;
+  width: 2rem;
+  margin-left: .5rem;
+  transition: .05s;
+  height: 1.2rem;
+}
+
+.managementAll-list-item-action:hover {
+  color: rgba(0,0,0,.5);
+}
+
+.managementAll-list-item:hover .managementAll-list-item-action {
+  opacity: .6;
+}
+
+.managementAll-list-item-action:hover{
+  cursor: pointer;
+}
+
+.managementAll-list-item-action--play{
+  background-image: url('/assets/img/play-button.svg');
+  background-repeat: no-repeat;
+}
+
+.managementAll-list-item-action--remove{
+  background-image: url('/assets/img/rubbish-bin.svg');
+  background-repeat: no-repeat;
+}
+
+.managementAll-show {
+  background: rgba(0,0,0,.05);
+  padding: .5rem;
+  color: grey;
+  font-size: .7rem;
+  text-transform: uppercase;
+  margin-top: 1rem;
+  margin-bottom: 3rem;
+  width: 15vw;
+  border-radius: 2rem;
+  margin-left: 15rem;
+  transition: .07s;
+  cursor: pointer;
+}
+
+.managementAll-show:hover {
+  background-color: grey;
+  color: white;
+}
+
+
+/* ATTRIBUTES */
+
+.hidden {
+  display: none;
+}

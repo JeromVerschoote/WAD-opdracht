@@ -7,6 +7,7 @@ class Store {
   todos = [];
   checkedTodos = [];
   showCheckedTodos = false;
+  currentProject = {};
 
   constructor() {
     this.addProject(new Project(`Edition 2018`, `Dour`, 10, ``, `https://drive.google.com/open?id=1-hAHr0NjBTFTQ3AATxLiT3BYv2Ed7r5z`, new Todo(`poster`, `00:00`, `20.04.2018`)))

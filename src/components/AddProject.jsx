@@ -1,7 +1,7 @@
 import React from "react";
 import Project from '../models/Project';
 
-const AddProject = ({store}) => {
+const addProject = ({store}) => {
   const handleSubmitForm = e => {
     e.preventDefault();
     const $form = e.currentTarget;
@@ -13,17 +13,15 @@ const AddProject = ({store}) => {
   };
 
   return (
-    <div className='panel-new'>
-      <form onSubmit={handleSubmitForm} className='panelNew-form'>
-        <input name="project" type="text" id='project' className='panelNew-input panelNew-input--big' placeholder='What will you be working on?'/>
-        <input name="client" type="text" className='panelNew-input' placeholder='Client'/>
-        <input name="rate" type="number" step="0.5" className='panelNew-input' placeholder='€'/>
-        <input name="deadline" type="date" className='panelNew-input'/>
-        <input name="download" type="text" className='panelNew-input' placeholder='Host link'/>
-        <input type="submit" value="+" className='panelNew-button'/>
+      <form onSubmit={handleSubmitForm} className='new-form'>
+        <input name="project" type="text" id='project' className='new-input--big input new-input ' placeholder='What will you be working on?'/>
+        <input name="client" type="text" className='input new-input' placeholder='Client'/>
+        <input name="rate" type="number" step="0.5" className='input new-input' placeholder='€'/>
+        <input name="deadline" type="date" className='input new-input'/>
+        <input name="download" type="text" className='input new-input' placeholder='Host link'/>
+        <input type="submit" value="+" className='button button--action'/>
       </form>
-    </div>
   );
 };
 
-export default AddProject;
+export default addProject;
