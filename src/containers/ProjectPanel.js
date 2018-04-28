@@ -10,8 +10,14 @@ class ProjectPanel extends Component {
     return (
       <section className='project'>
         <ProjectSelector store={store} />
-        <Details store={store}/>
-        <Todos store={store}/>
+        {
+          store.projectSelected?
+          <div>
+            <Details store={store}/>
+            <Todos store={store}/>
+          </div>
+          :<p>Please select a project</p>
+        }
       </section>
     );
   }

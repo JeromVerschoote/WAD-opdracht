@@ -3,11 +3,14 @@ import Project from '../models/Project';
 import Todo from '../models/Todo';
 
 class Store {
+  pages = [`home`, `settings`, `profile`];
   projects = [];
   todos = [];
+  currentTarget = {};
+  
   checkedTodos = [];
   showCheckedTodos = false;
-  currentProject = {};
+  projectSelected = false;
 
   constructor() {
     this.addProject(new Project(`Edition 2018`, `Dour`, 10, ``, `https://drive.google.com/open?id=1-hAHr0NjBTFTQ3AATxLiT3BYv2Ed7r5z`, new Todo(`poster`, `00:00`, `20.04.2018`)))
@@ -23,6 +26,8 @@ class Store {
     this.addTodo(new Todo(`facebook avatar filter`,`00:00`,`21.04.2018`), this.projects[this.getIndexFromId(this.projects[0].id)].id)
     this.addTodo(new Todo(`app`,`00:00`,`21.04.2018`), this.projects[this.getIndexFromId(this.projects[0].id)].id)
     this.addTodo(new Todo(`website`,`00:00`,`21.04.2018`), this.projects[this.getIndexFromId(this.projects[0].id)].id)
+
+    this.currentProject = this.projects[0];
   }
 
   addProject = project => {
@@ -45,6 +50,7 @@ class Store {
   }
 
   getTodos = id => {
+    this.projectSelected = true;
     this.todos = this.projects[this.getIndexFromId(id)].todos;
   }
 

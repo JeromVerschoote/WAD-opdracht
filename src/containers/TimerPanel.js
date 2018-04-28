@@ -8,8 +8,8 @@ class TimerPanel extends Component {
   render() {
     return (
       <section className='timer'>
-        <Infographic strore={store}/>
-        <Records strore={store}/>
+        <Infographic store={store}/>
+        <Records store={store}/>
       </section>
     );
   }

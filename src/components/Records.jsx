@@ -5,7 +5,9 @@ import {observer} from 'mobx-react';
 const Records = ({store}) => {
   return (
     <div className='timer-records'>
-      <p>Timer Records (being built)</p>
+      {
+        // list of time records
+      }
     </div>
   );
 };
