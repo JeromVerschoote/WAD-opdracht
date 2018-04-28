@@ -1,10 +1,7 @@
 import React, { Component } from "react";
 import { Route, Switch, Redirect} from "react-router-dom";
-
 import store from '../store';
-
 import NotFound from '../components/NotFound';
-
 import NewPanel from "../containers/NewPanel";
 import ProjectPanel from "../containers/ProjectPanel";
 import TimerPanel from "../containers/TimerPanel";

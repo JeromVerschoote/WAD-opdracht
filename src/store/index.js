@@ -7,7 +7,7 @@ class Store {
   projects = [];
   todos = [];
   currentTarget = {};
-  
+
   checkedTodos = [];
   showCheckedTodos = false;
   projectSelected = false;

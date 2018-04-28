@@ -12,7 +12,7 @@ const Nav = ({store}) => {
             store.pages.map(page => {
               return <li key={page}>
                 <NavLink className="nav-item-link" to={`/${page}`}>
-                  {page}
+                  <p className='nav-text'>{page}</p>
                 </NavLink>
               </li>
             })

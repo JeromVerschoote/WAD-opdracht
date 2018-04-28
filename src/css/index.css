@@ -15,6 +15,36 @@ li {
   list-style: none;
 }
 
+.navigation-nav {
+  height: 10vh;
+  margin-top: 5vh;
+  padding: 1rem;
+}
+
+.navigation-nav ul {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 10vh;
+}
+
+.nav-item-link {
+  text-decoration: none;
+}
+
+.nav-text {
+  padding: .5rem;
+  border-radius: .3rem;
+  text-transform: capitalize;
+
+  color: rgba(230, 230, 230);
+  font-size: .9rem;
+}
+
+.nav-text:hover {
+    background: rgba(255,255,255,.3);
+}
+
 /* markup */
 
 .input {
@@ -259,6 +289,8 @@ li {
 .timer {
   width: 50%;
 }
+
+
 
 /* attributes */
 

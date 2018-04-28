@@ -16,7 +16,7 @@ class ProjectPanel extends Component {
             <Details store={store}/>
             <Todos store={store}/>
           </div>
-          :<p>Please select a project</p>
+          :store.projects[0]?<p>Select a project to manage its todo's.</p>:<p>Go ahead and make your first project!</p>
         }
       </section>
     );

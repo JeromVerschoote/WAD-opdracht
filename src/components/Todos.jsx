@@ -19,16 +19,18 @@ const Todos = ({store}) => {
     <div className='project-todos'>
       <h2 className='hidden'>Todos</h2>
       <ol className='todos-list'>
-        {store.todos &&
+        {
           store.todos.map(todo =>
-            <li key={todo.id} className='todo'>
-              <input className='todo-input todo-input--checkbox' type='checkbox' onClick={e => store.handleCheck(e, todo.id, store.currentProject.id)}></input>
-              <p className='todo-prop todo-prop--task'>{todo.task}</p>
-              <p className='todo-prop todo-prop--time'>{todo.time}</p>
-              <p className='todo-prop todo-prop--deadline'>{todo.deadline}</p>
-              <button className='todo-action todo-action--play' onClick={e => store.timeTodo(e)}></button>
-              <button className='todo-action todo-action--remove' onClick={e => store.removeTodo(e)}></button>
-            </li>
+            todo?(
+              <li key={todo.id} className='todo'>
+                <input className='todo-input todo-input--checkbox' type='checkbox' onClick={e => store.handleCheck(e, todo.id, store.currentProject.id)}></input>
+                <p className='todo-prop todo-prop--task'>{todo.task}</p>
+                <p className='todo-prop todo-prop--time'>{todo.time}</p>
+                <p className='todo-prop todo-prop--deadline'>{todo.deadline}</p>
+                <button className='todo-action todo-action--play' onClick={e => store.timeTodo(e)}></button>
+                <button className='todo-action todo-action--remove' onClick={e => store.removeTodo(e)}></button>
+              </li>
+            ):<p>Here you can add todo's to you project.</p>
           )
         }
         <button className='button--secundairy' onClick={e => store.toggleCheckedTodos(e)}>Show Completed Todo's</button>
