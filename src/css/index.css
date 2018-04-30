@@ -45,6 +45,25 @@ li {
   color: white;
 }
 
+.button--secundairy {
+  color: rgba(0,0,0,.4);
+  background: none;
+  font-size: .9rem;
+  transition: .05s;
+  padding-right: 1rem;
+}
+
+.button--secundairy:hover {
+  opacity: 1;
+  color: #48BF22;
+  transition: .1s;
+  cursor: pointer;
+}
+
+.button--delete:hover {
+  color: red;
+}
+
 /* markup */
 
 .input {
@@ -130,10 +149,6 @@ li {
   align-items: flex-start;
 }
 
-.project-selector p{
-
-}
-
 .project-selector a {
   background: grey;
   padding: .5rem;
@@ -145,9 +160,20 @@ li {
 
 .project-details{
   height: 30vh;
+  display: flex;
+  justify-content: space-between;
 }
 
-.project-details h2 {
+.details-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.details-controls {
+  padding: 2rem;
+}
+
+.project-details-name {
   padding: 0 2rem;
   font-size: 2rem;
 }
@@ -155,6 +181,7 @@ li {
 .project-details-deadline {
   color: rgba(0,0,0,.3);
   padding: .5rem 2rem;
+  font-size: 1rem;
 }
 
 .project-details-client {
@@ -217,34 +244,12 @@ li {
 
 .todo-action {
   opacity: 0;
-  color: rgba(0,0,0,.4);
-  background: none;
-  font-size: .9rem;
-  transition: .05s;
-  padding-right: 1rem;
-}
-
-.todo-action:hover {
-  color: rgba(0,0,0,.7);
-  cursor: pointer;
-}
-
-.todo-action--edit:hover{
-  opacity: 1;
-  color: #42C100;
-  transition: .1s;
 }
 
 .todo-action--delete:hover{
   opacity: 1;
   color: red;
   transition: .1s;
-}
-
-
-.todo-action--update{
-  opacity: 1;
-  color: #42C100;
 }
 
 .todo-prop--input {
@@ -287,24 +292,6 @@ li {
   cursor: pointer;
   background: white;
   color: #42C100;
-}
-
-.button--secundairy {
-  padding: .5rem .8rem;
-  border-radius: 2rem;
-  font-size: .7rem;
-  color: grey;
-  text-transform: uppercase;
-  width: 15rem;
-  margin: 2rem;
-  background: rgba(0,0,0,.1);
-}
-
-.button--secundairy:hover {
-  background: grey;
-  color: white;
-  cursor: pointer;
-  transition: .1s;
 }
 
 .notFound{

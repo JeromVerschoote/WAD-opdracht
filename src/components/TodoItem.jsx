@@ -42,8 +42,8 @@ class TodoItem extends Component {
         <p className='todo-prop todo-prop--time'>{time}</p>
         <p className='todo-prop todo-prop--deadline'>{deadline}</p>
 
-        <button onClick={e => {e.preventDefault(); this.toggleState()}} className='todo-action todo-action--edit'>Edit</button>
-        <button onClick={e => {e.preventDefault(); deleteItem(index, parentArray)}} className='todo-action todo-action--delete'>Delete</button>
+        <button onClick={e => {e.preventDefault(); this.toggleState()}} className='button--secundairy todo-action'>Edit</button>
+        <button onClick={e => {e.preventDefault(); deleteItem(index, parentArray)}} className='button--secundairy button--delete todo-action'>Delete</button>
       </li>
     );
   };
@@ -53,7 +53,7 @@ class TodoItem extends Component {
     return(
       <form onSubmit={this.update} className='todo'>
         <input type="text" ref={(value) => {this.input = value}} defaultValue={todo.name} placeholder={todo.name} name='task' className='todo-prop--input'/>
-        <button type="submit" className='todo-action todo-action--update'>Save changes</button>
+        <button type="submit" className='todo-action button--secundairy'>Save changes</button>
       </form>
     )
   };

@@ -16,7 +16,7 @@ class ProjectPanel extends Component {
         {
           project?
           <div>
-            <Details store={store} project={project}/>
+            <Details store={store} project={project} parentArray={store.projects}/>
             <TodosSection store={store} project={project}/>
           </div>
           :store.projects[0]?<p className='ifEmpty'>Select a project to manage its todo's.</p>:<p className='ifEmpty'>Go ahead and make your first project!</p>
