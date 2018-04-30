@@ -20,7 +20,7 @@ class Details extends Component {
 
     editItem(findProjectIndexFromId(this.props.project.id), parentArray, e.currentTarget.name.name, e.currentTarget.name.value);
     editItem(findProjectIndexFromId(this.props.project.id), parentArray, e.currentTarget.client.name, e.currentTarget.client.value);
-    editItem(findProjectIndexFromId(this.props.project.id), parentArray, e.currentTarget.deadline.name, e.currentTarget.deadline.value);
+    //editItem(findProjectIndexFromId(this.props.project.id), parentArray, e.currentTarget.deadline.name, e.currentTarget.deadline.value);
     this.toggleState();
   };
 
@@ -33,21 +33,27 @@ class Details extends Component {
   }
 
   renderItem = () => {
-    const {id, name, client, deadline} = this.props.project;
-    const {deleteItem, findProjectIndexFromId} = this.props.store;
+    const {id, name, client, deadline, download, totalTime, totalEarnings} = this.props.project;
+    const {deleteItem, findProjectIndexFromId, timeToDate} = this.props.store;
     const {parentArray} = this.props;
 
     return(
       <div className='project-details'>
 
         <div className='details-content'>
-          <p className='project-details-deadline'>{deadline}</p>
+          <p className='project-details-deadline'>{timeToDate(deadline)}</p>
           <h2 className='project-details-name'>{name}</h2>
           <p className='project-details-client'>{client}</p>
         </div>
 
+        <div className='details-stats'>
+          <p className='project-details-time'>{totalTime}</p>
+          <p className='project-details-rate'>€ {totalEarnings},-</p>
+        </div>
+
         <div className='details-controls'>
           <button onClick={e => {e.preventDefault(); this.toggleState()}} className='button--secundairy'>Edit</button>
+          <button><a href={download} className='button--secundairy'>Files</a></button>
           <button onClick={e => {e.preventDefault(); deleteItem(findProjectIndexFromId(id), parentArray)}} className='button--secundairy button--delete'>Delete</button>
         </div>
       </div>

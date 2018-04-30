@@ -51,6 +51,7 @@ li {
   font-size: .9rem;
   transition: .05s;
   padding-right: 1rem;
+  text-decoration: none;
 }
 
 .button--secundairy:hover {
@@ -167,6 +168,14 @@ li {
 .details-content {
   display: flex;
   flex-direction: column;
+}
+
+.details-stats {
+  display: flex;
+  padding: 2.3rem 0;
+  justify-content: space-between;
+  width: 6rem;
+  color: #404040;
 }
 
 .details-controls {
