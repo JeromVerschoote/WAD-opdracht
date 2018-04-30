@@ -5,66 +5,27 @@ import Todo from '../models/Todo';
 class Store {
   pages = [`home`, `settings`, `profile`];
   projects = [];
-  todos = [];
-  currentTarget = {};
-
-  checkedTodos = [];
-  showCheckedTodos = false;
-  projectSelected = false;
 
   constructor() {
-    this.addProject(new Project(`Edition 2018`, `Dour`, 10, ``, `https://drive.google.com/open?id=1-hAHr0NjBTFTQ3AATxLiT3BYv2Ed7r5z`, new Todo(`poster`, `00:00`, `20.04.2018`)))
-    this.addProject(new Project(`2018`, `Copacobana`, 10, ``, `https://drive.google.com/open?id=1-hAHr0NjBTFTQ3AATxLiT3BYv2Ed7r5z`, new Todo(`flyer`, `44`, `morgen`)))
-
-    this.addTodo(new Todo(`flyer`,`00:00`,`21.04.2018`), this.projects[this.getIndexFromId(this.projects[0].id)].id)
-    this.addTodo(new Todo(`animated banner`,`00:00`,`21.04.2018`), this.projects[this.getIndexFromId(this.projects[0].id)].id)
-    this.addTodo(new Todo(`price list`,`00:00`,`21.04.2018`), this.projects[this.getIndexFromId(this.projects[0].id)].id)
-    this.addTodo(new Todo(`floor plan`,`00:00`,`21.04.2018`), this.projects[this.getIndexFromId(this.projects[0].id)].id)
-    this.addTodo(new Todo(`ticket`,`00:00`,`21.04.2018`), this.projects[this.getIndexFromId(this.projects[0].id)].id)
-    this.addTodo(new Todo(`bracelet`,`00:00`,`21.04.2018`), this.projects[this.getIndexFromId(this.projects[0].id)].id)
-    this.addTodo(new Todo(`time table`,`00:00`,`21.04.2018`), this.projects[this.getIndexFromId(this.projects[0].id)].id)
-    this.addTodo(new Todo(`facebook avatar filter`,`00:00`,`21.04.2018`), this.projects[this.getIndexFromId(this.projects[0].id)].id)
-    this.addTodo(new Todo(`app`,`00:00`,`21.04.2018`), this.projects[this.getIndexFromId(this.projects[0].id)].id)
-    this.addTodo(new Todo(`website`,`00:00`,`21.04.2018`), this.projects[this.getIndexFromId(this.projects[0].id)].id)
-
-    this.currentProject = this.projects[0];
+    this.addItem(new Project(`Hef @ NEST Gent`, `Hip Hop Hooray`, 10, `April 20, 2018`, `https://drive.google.com/open?id=1-hAHr0NjBTFTQ3AATxLiT3BYv2Ed7r5z`, new Todo(`poster`, `00:00`, `20.04.2018`)), this.projects)
+    this.addItem(new Project(`Adryiano @ Charlatan Gent`, `EXTASE`, 10, `May 3, 2018`, `https://drive.google.com/open?id=1-hAHr0NjBTFTQ3AATxLiT3BYv2Ed7r5z`, new Todo(`flyer`, `44`, `morgen`)), this.projects)
+    this.addItem(new Todo(`flyer`,`00:00`,`21.04.2018`), this.projects[this.findProjectIndexFromId(this.projects[0].id)].todos)
+    this.addItem(new Todo(`animated banner`,`00:00`,`21.04.2018`), this.projects[this.findProjectIndexFromId(this.projects[0].id)].todos)
+    this.addItem(new Todo(`price list`,`00:00`,`21.04.2018`), this.projects[this.findProjectIndexFromId(this.projects[0].id)].todos)
+    this.addItem(new Todo(`floor plan`,`00:00`,`21.04.2018`), this.projects[this.findProjectIndexFromId(this.projects[0].id)].todos)
+    this.addItem(new Todo(`ticket`,`00:00`,`21.04.2018`), this.projects[this.findProjectIndexFromId(this.projects[0].id)].todos)
+    this.addItem(new Todo(`bracelet`,`00:00`,`21.04.2018`), this.projects[this.findProjectIndexFromId(this.projects[0].id)].todos)
+    this.addItem(new Todo(`time table`,`00:00`,`21.04.2018`), this.projects[this.findProjectIndexFromId(this.projects[0].id)].todos)
+    this.addItem(new Todo(`facebook avatar filter`,`00:00`,`21.04.2018`), this.projects[this.findProjectIndexFromId(this.projects[0].id)].todos)
+    this.addItem(new Todo(`app`,`00:00`,`21.04.2018`), this.projects[this.findProjectIndexFromId(this.projects[0].id)].todos)
+    this.addItem(new Todo(`website`,`00:00`,`21.04.2018`), this.projects[this.findProjectIndexFromId(this.projects[0].id)].todos)
   }
 
-  addProject = project => {
-    this.projects.push(project);
-  }
-
-  addTodo = (todo, id) => {
-    this.projects[this.getIndexFromId(id)].todos.push(todo);
-  }
-
-  removeTodo = e => {
-    e.currentTarget.parentNode.remove();
-  }
-
-  timeTodo = e => {
-    console.log(e);
-    // tijd element zoeken
-    // timer starten
-    // tijd element updaten naar gelang timer
-  }
-
-  getTodos = id => {
-    this.projectSelected = true;
-    this.todos = this.projects[this.getIndexFromId(id)].todos;
-  }
-
-  getIndexFromId = id => {
-    return this.projects.findIndex(project => project.id === id);
-  }
-
-  getTodoIndexFromId = id => {
-    return this.todos.findIndex(todo => todo.id === id);
-  }
+  /*
 
   handleCheck = (e, id, projectId) => {
     const listItem = e.currentTarget.parentNode;
-    const todo = this.todos[this.getTodoIndexFromId(id)];
+    const todo = this.todos[this.findTodoIndexFromId(id)];
 
     todo.hidden = !todo.hidden;
 
@@ -97,20 +58,47 @@ class Store {
         e.currentTarget.innerHTML = `Show Completed Todo's`;
       }
     }
+  }*/
+
+  findProjectIndexFromId = id => {
+    return this.projects.findIndex(item => item.id === id);
+  }
+
+  findTodoIndexFromId = id => {
+    return this.todos.findIndex(todo => todo.id === id);
+  }
+
+  /**/
+
+  addItem = (item, array) => {
+    array.push(item);
+  }
+
+  editItem = (index, array, field, value) => {
+    array[index][field] = value;
+  }
+
+  deleteItem = (index, array) => {
+    array.splice(index, 1);
+  }
+
+  toggleProperty = (index, array, property) => {
+    array[index][property] = !array[index][property];
   }
 }
 
 decorate(Store, {
-  projects: observable,
-  todos: observable,
-  getTodos: action,
-  addProject: action,
-  removeTodo: action,
-  getIndexFromId: action,
-  getTodoIndexFromId: action,
+  findProjectIndexFromId: action,
+  findTodoIndexFromId: action,
   handleChecked: action,
   showCheckedTodos: observable,
-  checkedTodos: observable
+  checkedTodos: observable,
+
+  projects: observable,
+  addItem: action,
+  editItem: action,
+  deleteItem: action,
+  toggleProperty: action
 });
 
 const store = new Store();

@@ -1,10 +1,12 @@
 import React, { Component } from "react";
 import { Route, Switch, Redirect} from "react-router-dom";
+
 import store from '../store';
-import NotFound from '../components/NotFound';
+
 import NewPanel from "../containers/NewPanel";
 import ProjectPanel from "../containers/ProjectPanel";
 import TimerPanel from "../containers/TimerPanel";
+import NotFound from '../components/NotFound';
 
 class Content extends Component {
   render() {
@@ -27,12 +29,14 @@ class Content extends Component {
       <Route path ='/home/project' exact render={() => <Redirect to='/home'/>}/>
       <Route path ='/home/project/:id' exact render=
       {({match}) => {
-        store.currentProject = store.projects[store.getIndexFromId(match.params.id)];
-        return store.projects[store.getIndexFromId(match.params.id)]?(
+        const index = store.findProjectIndexFromId(match.params.id)
+        const project = store.projects[index];
+
+        return project?(
           <div className='application-content'>
             <NewPanel />
             <div className='content-container'>
-              <ProjectPanel />
+              <ProjectPanel project={project}/>
               <TimerPanel />
             </div>
           </div>

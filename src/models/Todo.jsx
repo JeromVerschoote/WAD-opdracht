@@ -7,14 +7,15 @@ class Todo {
     this.task = task;
     this.time = time;
     this.deadline = deadline;
-    this.hidden = false;
+    this.completed = false;
   }
 }
 
 decorate(Todo, {
   task: observable,
   time: observable,
-  deadline: observable
+  deadline: observable,
+  completed: observable
 });
 
 export default Todo;

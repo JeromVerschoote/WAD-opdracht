@@ -1,19 +1,20 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import {NavLink} from "react-router-dom";
 import PropTypes from "prop-types";
 import {observer} from 'mobx-react';
 
 const Nav = ({store}) => {
+  const {pages} = store;
   return (
     <div className='navigation-nav'>
       <nav>
         <ul>
-          {store.pages && (
-            store.pages.map(page => {
+          {pages && (
+            pages.map(page => {
               return <li key={page}>
-                <NavLink className="nav-item-link" to={`/${page}`}>
-                  <p className='nav-text'>{page}</p>
-                </NavLink>
+                  <NavLink extact='true' className="nav-item-link" to={`/${page}`}  activeClassName='selected' >
+                    <p className='nav-text'>{page}</p>
+                  </NavLink>
               </li>
             })
           )}

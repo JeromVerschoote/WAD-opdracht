@@ -7,6 +7,7 @@ class Navigation extends Component {
   render() {
     return (
       <div className='application-navigation'>
+        <h2>toggl 2.0</h2>
         <Nav store={store}/>
       </div>
     );
