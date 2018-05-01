@@ -9,7 +9,15 @@ class Project {
     this.rate = rate;
     this.deadline = new Date(deadline);
     this.download = download;
-    this.todos = [todos];
+    this.todos = [];
+  }
+
+  addTodo(todo){
+    this.todos.push(todo);
+  }
+
+  editTodo(){
+
   }
 
   get totalTime(){

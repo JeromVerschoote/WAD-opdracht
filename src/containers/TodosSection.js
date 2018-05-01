@@ -13,15 +13,15 @@ class TodosSection extends Component {
         <h2 className='hidden'>Todos</h2>
         <ol className='todos-list'>
           {
-            project.todos[0]?
-            project.todos.map((todo, index) => <TodoItem store={store} todo={todo} index={index} key={todo.id} parentArray={project.todos}/>)
-            :<p className='ifEmpty'>Voeg hier snel je todo's toe!</p>
+            console.log(project)
           }
           {
-            console.log(project.todos)
+            //project.todos[0]?
+            project.todos.map((todo, index) => <TodoItem store={store} todo={todo} index={index} key={todo.id} project={project}/>)
+            //:<p className='ifEmpty'>Voeg snel je todo's toe!</p>
           }
         </ol>
-        <TodoForm store={store} parentArray={project.todos}/>
+        <TodoForm store={store} project={project}/>
       </div>
     )};
   }

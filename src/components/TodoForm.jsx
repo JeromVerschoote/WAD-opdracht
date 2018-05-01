@@ -4,7 +4,7 @@ import {observer} from 'mobx-react';
 
 import Todo from '../models/Todo';
 
-const TodoForm = ({store, parentArray}) => {
+const TodoForm = ({store, project}) => {
 
   const handleSubmitForm = e => {
     e.preventDefault();
@@ -12,7 +12,10 @@ const TodoForm = ({store, parentArray}) => {
     const form = e.currentTarget;
 
     if(form.task.value && form.time && form.deadline.value){
-      store.addItem(new Todo(form.task.value, form.time.value, form.deadline.value), parentArray);
+      const todo = new Todo(form.task.value, form.time.value, form.deadline.value)
+      project.todos.push(todo)
+      //project.addTodo(todo);
+      store.update(project);
       form.reset();
     }
   }
@@ -29,7 +32,6 @@ const TodoForm = ({store, parentArray}) => {
 
 TodoForm.propTypes = {
   store: PropTypes.object.isRequired,
-  parentArray: PropTypes.object.isRequired
 }
 
 export default observer(TodoForm);

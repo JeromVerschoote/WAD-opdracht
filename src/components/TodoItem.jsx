@@ -44,7 +44,11 @@ class TodoItem extends Component {
           {time.minutes < 10?`0${time.minutes}:`:`${time.minutes}:`}
           {time.seconds < 10?`0${time.seconds}`:`${time.seconds}`}
         </p>
-        <p className='todo-prop todo-prop--deadline'>{timeToDate(deadline)}</p>
+        {
+          //<p className='todo-prop todo-prop--deadline'>{timeToDate(deadline)}</p>
+        }
+
+
 
         <button onClick={e => {e.preventDefault(); time.toggleState()}} className='button--secundairy todo-action'>{time.counting?`Pause`:`Start`}</button>
         <button onClick={e => {e.preventDefault(); this.toggleState()}} className='button--secundairy todo-action'>Edit</button>
@@ -73,7 +77,7 @@ TodoItem.propTypes = {
   store: PropTypes.object.isRequired,
   todo: PropTypes.object.isRequired,
   index: PropTypes.number.isRequired,
-  parentArray: PropTypes.object.isRequired
+  //parentArray: PropTypes.object.isRequired
 }
 
 export default observer(TodoItem);

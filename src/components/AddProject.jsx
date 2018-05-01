@@ -7,8 +7,8 @@ const AddProject = ({store}) => {
     e.preventDefault();
     const $form = e.currentTarget;
 
-    if($form.project.value){
-      store.addItem(new Project($form.project.value, $form.client.value, $form.rate.value, $form.deadline.value, $form.download.value), store.projects);
+    if($form.project.value && $form.client.value && $form.rate.value && $form.deadline.value && $form.download.value){
+      store.add(new Project($form.project.value, $form.client.value, $form.rate.value, $form.deadline.value, $form.download.value), store.projects);
       $form.reset();
     }
   };
