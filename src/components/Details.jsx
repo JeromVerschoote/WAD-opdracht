@@ -15,17 +15,12 @@ class Details extends Component {
   update = e => {
     e.preventDefault();
 
-    //const {parentArray} = this.props;
-    const {/*editItem, findProjectIndexFromId,*/ update, edit} = this.props.store;
+    const {update, edit} = this.props.store;
 
-    // this.props.probject, field, value
-    // id &
     edit(this.props.project, e.currentTarget.name.name, e.currentTarget.name.value);
     edit(this.props.project, e.currentTarget.client.name, e.currentTarget.client.value);
     update(this.props.project);
-    //editItem(findProjectIndexFromId(this.props.project.id), parentArray, e.currentTarget.name.name, e.currentTarget.name.value);
-    //editItem(findProjectIndexFromId(this.props.project.id), parentArray, e.currentTarget.client.name, e.currentTarget.client.value);
-    //editItem(findProjectIndexFromId(this.props.project.id), parentArray, e.currentTarget.deadline.name, e.currentTarget.deadline.value);
+
     this.toggleState();
   };
 
@@ -38,17 +33,15 @@ class Details extends Component {
   }
 
   renderItem = () => {
-    const {/*id,*/ name, client, /*deadline,*/ download, totalTime, totalEarnings} = this.props.project;
-    const {/*deleteItem, findProjectIndexFromId, timeToDate,*/ remove} = this.props.store;
-    //const {parentArray} = this.props;
+    const {store, project} = this.props;
+    const {timeToDate, remove} = store;
+    const {name, client, deadline, download, totalTime, totalEarnings} = project;
 
     return(
       <div className='project-details'>
 
         <div className='details-content'>
-          {
-            // <p className='project-details-deadline'>{timeToDate(deadline)}</p>
-          }
+          <p className='project-details-deadline'>{timeToDate(deadline)}</p>
 
           <h2 className='project-details-name'>{name}</h2>
           <p className='project-details-client'>{client}</p>
@@ -62,7 +55,7 @@ class Details extends Component {
         <div className='details-controls'>
           <button onClick={e => {e.preventDefault(); this.toggleState()}} className='button--secundairy'>Edit</button>
           <button><a href={download} className='button--secundairy'>Files</a></button>
-          <button onClick={e => {e.preventDefault(); remove(this.props.project, this.props.store.projects);}} className='button--secundairy button--delete'>Delete</button>
+          <button onClick={e => {e.preventDefault(); remove(project, store.projects);}} className='button--secundairy button--delete'>Delete</button>
         </div>
       </div>
     );
@@ -93,8 +86,7 @@ class Details extends Component {
 
 Details.propTypes = {
   store: PropTypes.object.isRequired,
-  project: PropTypes.object.isRequired,
-  parentArray: PropTypes.object.isRequired
+  project: PropTypes.object.isRequired
 }
 
 export default observer(Details);

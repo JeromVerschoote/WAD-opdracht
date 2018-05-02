@@ -1,5 +1,5 @@
 import uniqid from "uniqid";
-import {decorate, observable, computed} from 'mobx';
+import {decorate, observable, computed, action} from 'mobx';
 
 class Project {
   constructor(name, client, rate, deadline, download, todos) {
@@ -12,11 +12,16 @@ class Project {
     this.todos = [];
   }
 
-  addTodo(todo){
-    this.todos.push(todo);
+  addTodo = todo => {
+    console.log(todo);
+    //this.todos.push(todo);
   }
 
   editTodo(){
+
+  }
+
+  deleteTodo(){
 
   }
 
@@ -42,7 +47,8 @@ decorate(Project, {
   download: observable,
   todos: observable,
   totalTime: computed,
-  totalEarnings: computed
+  totalEarnings: computed,
+  addTodo: action
 });
 
 export default Project;

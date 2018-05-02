@@ -15,10 +15,12 @@ class TodoItem extends Component {
   update = e => {
     e.preventDefault();
 
-    const {index, parentArray} = this.props;
-    const {editItem} = this.props.store;
+    const {store, project, todo} = this.props;
+    const {update, edit} = store;
 
-    editItem(index, parentArray, this.input.name, this.input.value);
+    edit(todo, this.input.name, this.input.value)
+    update(project);
+
     this.toggleState();
   };
 
@@ -31,28 +33,27 @@ class TodoItem extends Component {
   }
 
   renderItem = () => {
-    const {task, time, deadline, completed} = this.props.todo;
-    const {deleteItem, toggleProperty, timeToDate} = this.props.store;
-    const {index, parentArray} = this.props;
+    const {store, project, todo} = this.props;
+    const {toggleProperty, timeToDate, removeTodo, update} = store;
+    const {task, time, deadline, completed} = todo;
+    const {hours, minutes, seconds, counting} = time;
 
     return(
       <li  className={completed ? `todo completed` : `todo`}>
-        <input type='checkbox' onClick={() => toggleProperty(index, parentArray, `completed`)} className='todo-action'></input>
+        <input type='checkbox' onClick={() => {toggleProperty(todo, `completed`); update(project)}} className='todo-action'></input>
         <p className='todo-prop todo-prop--task'>{task}</p>
         <p className='todo-prop todo-prop--time'>
-          {time.hours < 10?`0${time.hours}:`:`${time.hours}:`}
-          {time.minutes < 10?`0${time.minutes}:`:`${time.minutes}:`}
-          {time.seconds < 10?`0${time.seconds}`:`${time.seconds}`}
+          {hours < 10?`0${hours}:`:`${hours}:`}
+          {minutes < 10?`0${minutes}:`:`${minutes}:`}
+          {seconds < 10?`0${seconds}`:`${seconds}`}
         </p>
         {
-          //<p className='todo-prop todo-prop--deadline'>{timeToDate(deadline)}</p>
+          <p className='todo-prop todo-prop--deadline'>{timeToDate(deadline)}</p>
         }
 
-
-
-        <button onClick={e => {e.preventDefault(); time.toggleState()}} className='button--secundairy todo-action'>{time.counting?`Pause`:`Start`}</button>
+        <button onClick={e => {e.preventDefault(); time.toggleState()}} className='button--secundairy todo-action'>{counting?`Pause`:`Start`}</button>
         <button onClick={e => {e.preventDefault(); this.toggleState()}} className='button--secundairy todo-action'>Edit</button>
-        <button onClick={e => {e.preventDefault(); deleteItem(index, parentArray)}} className='button--secundairy button--delete todo-action'>Delete</button>
+        <button onClick={e => {e.preventDefault(); removeTodo(todo, project); update(project)}} className='button--secundairy button--delete todo-action'>Delete</button>
       </li>
     );
   };
@@ -75,9 +76,8 @@ class TodoItem extends Component {
 
 TodoItem.propTypes = {
   store: PropTypes.object.isRequired,
-  todo: PropTypes.object.isRequired,
-  index: PropTypes.number.isRequired,
-  //parentArray: PropTypes.object.isRequired
+  project: PropTypes.object.isRequired,
+  todo: PropTypes.object.isRequired
 }
 
 export default observer(TodoItem);

@@ -7,13 +7,11 @@ const ProjectSelector = ({store}) => {
   const {projects} = store;
   return (
     <div className='project-selector'>
-      {
-        projects.map(project =>
+      {projects.map(project =>
           <Link to={`/home/project/${project._id}`} key={project.id}>
             <p>{project.name}</p>
           </Link>
-        )
-      }
+        )}
     </div>
   );
 };

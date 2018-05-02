@@ -9,14 +9,14 @@ const TodoForm = ({store, project}) => {
   const handleSubmitForm = e => {
     e.preventDefault();
 
-    const form = e.currentTarget;
+    const {addTodo, update} = store;
+    const {task, time, deadline} = e.currentTarget;
 
-    if(form.task.value && form.time && form.deadline.value){
-      const todo = new Todo(form.task.value, form.time.value, form.deadline.value)
-      project.todos.push(todo)
-      //project.addTodo(todo);
-      store.update(project);
-      form.reset();
+    if(task.value && time.value && deadline.value){
+      addTodo(new Todo(task.value, time.value, deadline.value), project);
+      update(project);
+
+      e.currentTarget.reset();
     }
   }
 
@@ -32,6 +32,7 @@ const TodoForm = ({store, project}) => {
 
 TodoForm.propTypes = {
   store: PropTypes.object.isRequired,
+  project: PropTypes.object.isRequired
 }
 
 export default observer(TodoForm);
