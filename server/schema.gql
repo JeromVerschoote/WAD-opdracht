@@ -1,0 +1,28 @@
+module.exports = `
+  type User {
+    _id: String
+    name: String
+    email: String
+  }
+
+  type Query {
+    getAllUsers: [User]
+  }
+
+  type Mutation {
+      addUser(
+        name: String!
+        email: String!
+      ):User
+
+      updateUser(
+        _id: String!
+        name: String
+        email: String
+      ): User
+
+      deleteUser(
+        _id: String!
+      ): User
+    }
+`

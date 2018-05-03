@@ -12,17 +12,8 @@ class Project {
     this.todos = [];
   }
 
-  addTodo = todo => {
-    console.log(todo);
-    //this.todos.push(todo);
-  }
-
-  editTodo(){
-
-  }
-
-  deleteTodo(){
-
+  addTodo = (todo, project) => {
+    project.todos.push(todo);
   }
 
   get totalTime(){

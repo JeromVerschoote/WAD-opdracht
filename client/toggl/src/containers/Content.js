@@ -8,6 +8,11 @@ import ProjectPanel from "../containers/ProjectPanel";
 import TimerPanel from "../containers/TimerPanel";
 import NotFound from '../components/NotFound';
 
+import Profile from '../containers/Profile';
+
+import { Query } from 'react-apollo';
+import GET_ALL_USERS from '../graphql/getAllUsers';
+
 class Content extends Component {
   render() {
     return (
@@ -44,7 +49,19 @@ class Content extends Component {
       }}
     />
     <Route path='/settings' exact render={() => <h1>Settings</h1>}/>
-    <Route path='/profile' exact render={() => <h1>Profile</h1>}/>
+    <Route path='/profile' exact render={() =>
+      <Query query={GET_ALL_USERS}>
+        {({loading, error, data: {getAllUsers}}) => {
+          if(loading){return <p>Loading...</p>};
+          if(error){return <p>Error: {error.message}</p>};
+          return (
+            <Profile users={getAllUsers}/>
+          )
+
+        }}
+      </Query>
+
+    }/>
     <Route component={NotFound}/>
   </Switch>
 );

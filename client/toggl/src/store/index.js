@@ -14,10 +14,6 @@ class Store {
     return this.projects.findIndex(item => item._id === id);
   }
 
-  toggleProperty = (todo, property) => {
-    todo[property] = ! todo[property];
-  }
-
   timeToDate = time => {
     const months = [`January`, `February`, `March`, `April`, `May`, `June`, `July`, `August`, `September`, `October`, `November`, `December`];
 
@@ -28,7 +24,7 @@ class Store {
     }
   }
 
-  /* With API */
+  /* API */
 
   _init = (_array) => {
     this.projects = _array;
@@ -73,7 +69,50 @@ class Store {
     project.todos.remove(todo);
   }
 
-/* Without API */
+  /* timer methods */
+
+  toggleTimer = (timer) => {
+    if(!timer.counting){
+      timer.intervalId = setInterval(this.tick(timer), 1000);
+    }else if(timer.counting){
+      clearInterval(timer.intervalId);
+    }
+    timer.counting = !timer.counting;
+  }
+
+  tick = (timer) => {
+    console.log(timer);
+    timer.seconds += 1;
+    timer.totalSeconds += 1;
+
+    if(timer.seconds >= 59){
+      timer.minutes += 1;
+      timer.seconds = 0;
+
+      if(timer.minutes >= 59){
+        timer.hours += 1;
+        timer.minutes = 0;
+      }
+    }
+  }
+
+  /* todo methods */
+
+  toggleCompleted = todo => {
+    todo[`completed`] = ! todo[`completed`];
+  }
+
+}
+
+decorate(Store, {
+  projects: observable,
+  add: action,
+  toggleTimer: action,
+  tick: action
+});
+
+const store = new Store();
+export default store;
 
 /*
   add = (item, array) => {
@@ -89,13 +128,3 @@ class Store {
     array.splice(index, 1);
   }
   */
-
-}
-
-decorate(Store, {
-  projects: observable,
-  add: action
-});
-
-const store = new Store();
-export default store;

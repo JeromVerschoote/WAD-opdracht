@@ -12,6 +12,7 @@ const TodoForm = ({store, project}) => {
     const {addTodo, update} = store;
     const {task, time, deadline} = e.currentTarget;
 
+    console.log(project);
     if(task.value && time.value && deadline.value){
       addTodo(new Todo(task.value, time.value, deadline.value), project);
       update(project);

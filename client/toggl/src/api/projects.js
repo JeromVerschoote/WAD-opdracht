@@ -11,7 +11,6 @@ class Api {
   };
 
   update = project => {
-    console.log(project);
     return fetch(`${this.url}/${project._id}`, this.getOptions(`put`, project))
       .then(r => r.json())
       .catch(err => console.error(err));

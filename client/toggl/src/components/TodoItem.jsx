@@ -34,24 +34,22 @@ class TodoItem extends Component {
 
   renderItem = () => {
     const {store, project, todo} = this.props;
-    const {toggleProperty, timeToDate, removeTodo, update} = store;
+    const {toggleCompleted, timeToDate, removeTodo, update} = store;
     const {task, time, deadline, completed} = todo;
     const {hours, minutes, seconds, counting} = time;
 
     return(
       <li  className={completed ? `todo completed` : `todo`}>
-        <input type='checkbox' onClick={() => {toggleProperty(todo, `completed`); update(project)}} className='todo-action'></input>
+        <input type='checkbox' onClick={() => {toggleCompleted(todo); update(project)}} className='todo-action'></input>
         <p className='todo-prop todo-prop--task'>{task}</p>
         <p className='todo-prop todo-prop--time'>
           {hours < 10?`0${hours}:`:`${hours}:`}
           {minutes < 10?`0${minutes}:`:`${minutes}:`}
           {seconds < 10?`0${seconds}`:`${seconds}`}
         </p>
-        {
-          <p className='todo-prop todo-prop--deadline'>{timeToDate(deadline)}</p>
-        }
+        <p className='todo-prop todo-prop--deadline'>{timeToDate(deadline)}</p>
 
-        <button onClick={e => {e.preventDefault(); time.toggleState()}} className='button--secundairy todo-action'>{counting?`Pause`:`Start`}</button>
+        <button onClick={e => {e.preventDefault(); store.toggleTimer(time)}} className='button--secundairy todo-action'>{counting?`Pause`:`Start`}</button>
         <button onClick={e => {e.preventDefault(); this.toggleState()}} className='button--secundairy todo-action'>Edit</button>
         <button onClick={e => {e.preventDefault(); removeTodo(todo, project); update(project)}} className='button--secundairy button--delete todo-action'>Delete</button>
       </li>
