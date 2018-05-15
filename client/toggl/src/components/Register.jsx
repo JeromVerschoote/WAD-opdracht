@@ -22,18 +22,18 @@ class Register extends Component {
   render() {
     return (
       <article>
-        <h3>Register</h3>
+        <h3>Register to make a new account.</h3>
         {this.state.showRegister ? (
           <Mutation mutation={REGISTER}>
             {register => (
               <form className="user-form" onSubmit={e => this.handleSubmit(e, register)}>
-                <label htmlFor="registration-name">Name</label>
-                <input type="text" id="registration-name" name="name" required />
+                <label htmlFor="registration-name" >Name</label>
+                <input type="text" id="registration-name" name="name" required className='input'/>
                 <label htmlFor="registration-email">E-mail</label>
-                <input type="email" id="registration-email" name="email" required />
+                <input type="email" id="registration-email" name="email" required className='input'/>
                 <label htmlFor="registration-pwd">Password</label>
-                <input type="password" id="registration-pwd" name="password" required />
-                <input type="submit" value="Register" />
+                <input type="password" id="registration-pwd" name="password" required className='input'/>
+                <input type="submit" value="Register" className='button-confirm'/>
               </form>
             )}
           </Mutation>

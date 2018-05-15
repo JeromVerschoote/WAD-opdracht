@@ -1,8 +1,5 @@
 import React, { Component } from "react";
 
-//import {Mutation} from 'react-apollo';
-//import ADD_USER from '../graphql/addUser';
-//import GET_ALL_USERS from '../graphql/getAllUsers';
 import GET_CURRENT_USER from '../graphql/getCurrentUser';
 import { Query } from "react-apollo";
 
@@ -20,31 +17,24 @@ class LoginGate extends Component {
     client.resetStore();
   };
 
-  name = null;
-  email = null;
-
   render() {
     return (
       <section className="user">
-      <h2>User</h2>
+      <h2 className='hidden'>User</h2>
       <Query query={GET_CURRENT_USER}>
         {({ loading, error, data, client }) => {
           if (loading) return null;
           if (error) return null;
           if (data.currentUser) {
             return (
-              <div>
-                <p className="signedin">
-                  Signed in as {data.currentUser.name}
-                </p>
-                <button onClick={() => this.handleSignOut(client)}>
-                  Sign Out
-                </button>
+              <div className='active-user'>
+                <h2>{data.currentUser.name}</h2>
+                <button className='button--secundairy button--delete' onClick={() => this.handleSignOut(client)}>Sign Out</button>
               </div>
             );
           }
           return (
-            <div>
+            <div className='user-container'>
               <Register />
               <Login client={client} />
             </div>

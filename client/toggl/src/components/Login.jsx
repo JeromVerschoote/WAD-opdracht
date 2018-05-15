@@ -21,7 +21,6 @@ class Login extends Component {
         });
       }
     } catch (error) {
-      console.log(error)
       this.setState({ errorMessage: error.graphQLErrors[0].message });
     }
   };
@@ -29,7 +28,7 @@ class Login extends Component {
   render() {
     return (
       <article>
-        <h3>Sign in</h3>
+        <h3>Or sign in to use an excisting account.</h3>
         <Mutation mutation={LOGIN}>
           {(login, { loading, error }) => {
             return (
@@ -39,6 +38,7 @@ class Login extends Component {
                   type="email"
                   id="sig-email"
                   name="email"
+                  className='input'
                   required
                 />
                 <label htmlFor="sig-pwd">Password</label>
@@ -46,9 +46,10 @@ class Login extends Component {
                   type="password"
                   id="sig-pwd"
                   name="password"
+                  className='input'
                   required
                 />
-                <input type="submit" value="Sign in" />
+                <input type="submit" value="Sign in" className='button-confirm'/>
                 <p>{this.state.errorMessage}</p>
               </form>
             );

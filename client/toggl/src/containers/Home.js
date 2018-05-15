@@ -10,7 +10,7 @@ class Home extends Component {
         <div className='application-content'>
         <NewPanel />
         <div className='content-container'>
-          <ProjectPanel />
+          <ProjectPanel project={this.props.project}/>
           <TimerPanel />
         </div>
       </div>
