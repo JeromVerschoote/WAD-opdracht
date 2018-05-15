@@ -1,63 +1,57 @@
 import React, { Component } from "react";
 
-import {Mutation} from 'react-apollo';
-import ADD_USER from '../graphql/addUser';
-import GET_ALL_USERS from '../graphql/getAllUsers';
+//import {Mutation} from 'react-apollo';
+//import ADD_USER from '../graphql/addUser';
+//import GET_ALL_USERS from '../graphql/getAllUsers';
+import GET_CURRENT_USER from '../graphql/getCurrentUser';
+import { Query } from "react-apollo";
+
+import Register from '../components/Register.jsx';
+import Login from '../components/Login.jsx';
 
 class Profile extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { showRegister: true };
+  }
+
+  handleSignOut = client => {
+    localStorage.removeItem(`jwt`);
+    client.resetStore();
+  };
 
   name = null;
   email = null;
 
   render() {
     return (
-      <section className='profile'>
-        <h2>Users</h2>
-        <p>Select your user-account to login or make a new one.</p>
-        <form className='profile-form'>
-          {
-            this.props.users.map(user =>
-              <div className='profile-user' key={user._id}>
-                <input type='radio' value={user.name} name='user'/>
-                <div className='user-container'>
-                  <label className='user-name'>{user.name}</label>
-                  <label className='user-email'>{user.email}</label>
-                  <div>
-                    <input type='checkbox'/>
-                    <label className='user-check'>receive report after finishing project.</label>
-                  </div>
-                </div>
+      <section className="user">
+      <h2>User</h2>
+      <Query query={GET_CURRENT_USER}>
+        {({ loading, error, data, client }) => {
+          if (loading) return null;
+          if (error) return null;
+          if (data.currentUser) {
+            return (
+              <div>
+                <p className="signedin">
+                  Signed in as {data.currentUser.name}
+                </p>
+                <button onClick={() => this.handleSignOut(client)}>
+                  Sign Out
+                </button>
               </div>
-            )
+            );
           }
-        </form>
-        <Mutation mutation={ADD_USER} update={
-        (cache, {data:{addUser}}) => {
-          const data = cache.readQuery({
-            query: GET_ALL_USERS
-          });
-
-          data.getAllUsers.push(addUser);
-          cache.writeQuery({
-            query: ADD_USER,
-            data: data
-          });
-        }}>
-          {addUser => (
-            <form className='addUser-form' onSubmit={e => {
-              e.preventDefault();
-              if (this.name.value && this.email.value) {
-                addUser({variables:{name:this.name.value, email:this.email.value}});
-                }
-              }
-            }>
-            <input className="input-content" autoFocus ref={field => this.name = field} placeholder='Username'/>
-            <input className="input-content" ref={field => this.email = field} placeholder='Email'/>
-            <input className="button" type="submit" value="+" />
-          </form>
-        )}
-    </Mutation>
-  </section>
+          return (
+            <div>
+              <Register />
+              <Login client={client} />
+            </div>
+          );
+        }}
+      </Query>
+    </section>
 );
 }
 }

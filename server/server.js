@@ -16,6 +16,10 @@ const schema = makeExecutableSchema({
 const dbConfig = require("./config/database.js");
 const mongoose = require("mongoose");
 
+const { User } = require("./connectors");
+const jwt = require("express-jwt");
+const { jwtsecret } = require("./config/database.js");
+
 mongoose.Promise = global.Promise;
 mongoose
   .connect(dbConfig.url)
@@ -35,7 +39,14 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 app.use(cors());
-app.use("/graphql", bodyParser.json(), graphqlExpress({ schema }));
+app.use("/graphql", bodyParser.json(), jwt({ secret: jwtsecret, credentialsRequired: false }),
+graphqlExpress(req => ({
+  schema,
+  context: {
+    user: req.user ? User.findById(req.user.id) : Promise.resolve(null)
+  }
+}))
+);
 app.use("/graphiql", graphiqlExpress({ endpointURL: "/graphql" }));
 
 app.use(function(req, res, next) {
